@@ -1,7 +1,15 @@
-// importera express och supabase
+const express = require("express");
+const addUser = require("./controllers/addUser");
+const loginUser = require("./controllers/loginUser");
 
-// Skapa en app variabel för att lägga in express
-// Hämta port variabeln från .env filen
-// Hämta express middlewere till app variabeln
+const PORT = process.env.PORT;
+const app = express();
 
-// Nu ska vi skapa post endpoint //
+app.use(express.json());
+
+app.post("/add-user", addUser);
+app.post("/login", loginUser);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
